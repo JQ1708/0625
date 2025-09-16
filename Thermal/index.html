@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermal Physics - Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            margin: 0;
+        }
+        .nav-btn {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .nav-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col justify-center items-center p-8">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Thermal Physics</h1>
+            <p class="text-xl text-gray-400">Explore heat, temperature and energy transfer</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full">
+            <div class="nav-btn bg-gradient-to-br from-red-600 to-red-800 rounded-2xl p-8 text-center" onclick="window.location.href='IGCSE_Physics_Thermal_Properties_Temperature_no_first_image.html'">
+                <div class="text-6xl mb-4">🌡️</div>
+                <h2 class="text-2xl font-bold mb-3">Thermal Properties</h2>
+                <p class="text-gray-300">Learn about temperature and thermal properties</p>
+            </div>
+            
+            <div class="nav-btn bg-gradient-to-br from-orange-600 to-orange-800 rounded-2xl p-8 text-center" onclick="window.location.href='Kinetic_Model_of_Particles_inline_expandable.html'">
+                <div class="text-6xl mb-4">⚛️</div>
+                <h2 class="text-2xl font-bold mb-3">Kinetic Model</h2>
+                <p class="text-gray-300">Understand particle motion and kinetic theory</p>
+            </div>
+            
+            <div class="nav-btn bg-gradient-to-br from-yellow-600 to-yellow-800 rounded-2xl p-8 text-center" onclick="window.location.href='Transfer_of_Thermal_Energy_inline_expandable_FIXED (1).html'">
+                <div class="text-6xl mb-4">🔥</div>
+                <h2 class="text-2xl font-bold mb-3">Energy Transfer</h2>
+                <p class="text-gray-300">Explore conduction, convection and radiation</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
