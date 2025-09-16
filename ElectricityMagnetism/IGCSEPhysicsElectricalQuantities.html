@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Quantities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0c1427;
+            background-image:
+                linear-gradient(rgba(24, 49, 87, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(24, 49, 87, 0.4) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #d1d5db; /* gray-300 */
+        }
+        
+        .circuit-header {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px #0ea5e9, 0 0 20px #0ea5e9; /* sky-500 */
+        }
+        
+        .schematic-nav a {
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+        .schematic-nav a:hover {
+            color: #38bdf8; /* sky-400 */
+            text-shadow: 0 0 8px #38bdf8;
+        }
+
+        .component-box {
+            background-color: rgba(17, 24, 39, 0.8); /* gray-900 with opacity */
+            border: 1px solid #374151; /* gray-700 */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .keyword {
+            color: #fbbf24; /* amber-400 */
+            font-weight: bold;
+        }
+
+        .formula {
+            background-color: #1f2937; /* gray-800 */
+            border: 1px solid #4b5563; /* gray-600 */
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+            color: #7dd3fc; /* light-blue-300 */
+            letter-spacing: 1.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .fraction {
+            display: inline-flex;
+            flex-direction: column;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .numerator {
+            padding: 0 0.4em;
+            border-bottom: 2px solid currentColor;
+        }
+        .denominator {
+            padding: 0 0.4em;
+        }
+        
+        .interactive-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #374151;
+            border-radius: 5px;
+            outline: none;
+        }
+        .interactive-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #fbbf24;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #0c1427;
+        }
+
+        .control-button.active {
+            background-color: #0ea5e9;
+            color: #0c1427;
+        }
+        
+        .quiz-option {
+            border-color: #4b5563;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .quiz-option:hover {
+            background-color: #374151;
+            border-color: #fbbf24;
+        }
+
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+<!-- Home Button -->
+<button onclick="window.history.back()" class="fixed top-4 right-4 z-50 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+    🏠 Home
+</button>
+    <header class="text-center mb-10">
+        <h1 class="circuit-header text-4xl md:text-5xl text-white">
+            <i class="fa-solid fa-bolt-lightning"></i> Electrical Quantities
+        </h1>
+    </header>
+    
+    <!-- Schematic Navigation -->
+    <nav class="schematic-nav component-box rounded-lg p-4 mb-10 max-w-6xl mx-auto">
+        <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
+            <a href="#charge">Charge & Fields</a><span class="text-gray-600">-|-</span>
+            <a href="#conductors">Conductors</a><span class="text-gray-600">-|-</span>
+            <a href="#current">Current & P.D.</a><span class="text-gray-600">-|-</span>
+            <a href="#resistance">Resistance</a><span class="text-gray-600">-|-</span>
+            <a href="#power">Energy & Power</a><span class="text-gray-600">-|-</span>
+            <a href="#quiz">Quiz</a>
+        </div>
+    </nav>
+    
+    <main class="max-w-5xl mx-auto space-y-10">
+        <!-- Charge & Fields -->
+        <section id="charge" class="component-box rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-sky-400 mb-4">Electric Charge & Fields</h2>
+            <p>Objects become charged by gaining (<b class="keyword">negative</b> charge) or losing (<b class="keyword">positive</b> charge) electrons. Like charges <b class="keyword">repel</b>, opposite charges <b class="keyword">attract</b>. An <b class="keyword">electric field</b> is a region where a charge experiences a force. Field lines show the direction of the force on a positive charge.</p>
+            <div class="mt-6 p-4 border border-gray-700 rounded-md">
+                <div class="flex justify-center gap-4 mb-4">
+                    <button class="control-button active border border-sky-500 px-3 py-1 rounded-md" data-field="positive">+ Point Charge</button>
+                    <button class="control-button border border-sky-500 px-3 py-1 rounded-md" data-field="negative">- Point Charge</button>
+                    <button class="control-button border border-sky-500 px-3 py-1 rounded-md" data-field="plates">Parallel Plates</button>
+                </div>
+                <div id="field-diagram" class="h-48 flex justify-center items-center bg-gray-900 rounded"></div>
+            </div>
+        </section>
+
+        <!-- Conductors & Insulators -->
+        <section id="conductors" class="component-box rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-sky-400 mb-4">Conductors & Insulators</h2>
+            <p><b class="keyword">Conductors</b> (like metals) are materials that allow charge to flow through them easily because they have free electrons. <b class="keyword">Insulators</b> (like plastic or rubber) do not have free electrons and do not allow charge to flow.</p>
+            <p class="mt-4">Insulators can be charged by <b class="keyword">friction</b>. For example, rubbing a plastic rod with a cloth can transfer electrons from one to the other, leaving both objects with an equal and opposite charge.</p>
+        </section>
+
+        <!-- Current, EMF & PD -->
+        <section id="current" class="component-box rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-sky-400 mb-4">Current, E.M.F & P.D.</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <p><b class="keyword">Current (I)</b> is the rate of flow of charge. <b class="keyword">Conventional current</b> flows from + to -.</p>
+                    <p class="formula my-2">I = <span class="fraction"><span class="numerator">Q</span><span class="denominator">t</span></span></p>
+                    <p><b class="keyword">E.M.F (ε)</b> is the energy supplied per unit charge by a source. <b class="keyword">P.D. (V)</b> is the energy transferred per unit charge between two points.</p>
+                    <p class="formula mt-2">V = <span class="fraction"><span class="numerator">W</span><span class="denominator">Q</span></span></p>
+                </div>
+                <div>
+                     <h3 class="font-bold text-lg mb-2">Measuring Current & Voltage</h3>
+                     <p>An <b class="keyword">ammeter</b> measures current and must be connected in <b class="keyword">series</b>. A <b class="keyword">voltmeter</b> measures potential difference and must be connected in <b class="keyword">parallel</b>.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resistance -->
+        <section id="resistance" class="component-box rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-sky-400 mb-4">Resistance & Component Characteristics</h2>
+            <p><b class="keyword">Resistance (R)</b> is the opposition to current. <p class="formula my-2 text-center">R = <span class="fraction"><span class="numerator">V</span><span class="denominator">I</span></span></p></p>
+            <p class="mt-4">Resistance of a wire increases with <b class="keyword">length</b> and decreases with <b class="keyword">cross-sectional area</b>.</p>
+            <div class="mt-6 p-4 border border-gray-700 rounded-md">
+                 <h3 class="font-bold text-lg mb-2 text-center">I-V Graphs</h3>
+                <div class="flex justify-center gap-4 mb-4">
+                    <button class="control-button active border border-sky-500 px-3 py-1 rounded-md" data-graph="resistor">Ohmic Resistor</button>
+                    <button class="control-button border border-sky-500 px-3 py-1 rounded-md" data-graph="lamp">Filament Lamp</button>
+                    <button class="control-button border border-sky-500 px-3 py-1 rounded-md" data-graph="diode">Diode</button>
+                </div>
+                <div id="iv-graph" class="h-48 flex justify-center items-center bg-gray-900 rounded"></div>
+            </div>
+        </section>
+        
+        <!-- Energy & Power -->
+        <section id="power" class="component-box rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-sky-400 mb-4">Electrical Energy & Power</h2>
+            <p><b class="keyword">Power (P)</b> is the rate at which energy is transferred, measured in Watts (W).</p>
+            <div class="grid md:grid-cols-3 gap-4 my-4 text-center">
+                <p class="formula">P = V &times; I</p>
+                <p class="formula">P = I&sup2;R</p>
+                <p class="formula">P = V&sup2;/R</p>
+            </div>
+            <p>Electrical energy is measured in <b class="keyword">kilowatt-hours (kWh)</b>. 1 kWh is the energy used by a 1 kW device for 1 hour.</p>
+            <div class="mt-6 p-4 border border-gray-700 rounded-md">
+                <h3 class="font-bold text-lg mb-2 text-center">Electricity Cost Calculator</h3>
+                <div class="grid md:grid-cols-3 gap-4 items-end">
+                    <div><label>Power (kW):</label><input type="number" id="power-kw" class="w-full p-1 bg-gray-800 border border-gray-600 rounded" value="2"></div>
+                    <div><label>Time (hours):</label><input type="number" id="time-h" class="w-full p-1 bg-gray-800 border border-gray-600 rounded" value="3"></div>
+                    <div><label>Cost per kWh (p):</label><input type="number" id="cost-kwh" class="w-full p-1 bg-gray-800 border border-gray-600 rounded" value="15"></div>
+                </div>
+                <p class="text-center mt-4">Total Cost: <span id="total-cost" class="text-2xl text-amber-400">90.0 p</span></p>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section id="quiz" class="component-box rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-sky-400 mb-4">Knowledge Check</h2>
+            <div id="quiz-container"></div>
+        </section>
+    </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for nav
+    document.querySelectorAll('.schematic-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Electric Field Diagram
+    const fieldButtons = document.querySelectorAll('[data-field]');
+    const fieldDiagram = document.getElementById('field-diagram');
+    const fields = {
+        positive: `<svg viewBox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="8" fill="#f59e0b"/><g stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrow)">${[...Array(8)].map((_, i) => `<line x1="50" y1="50" x2="${50 + 40 * Math.cos(i * Math.PI / 4)}" y2="${50 + 40 * Math.sin(i * Math.PI / 4)}"/>`).join('')}</g><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b"/></marker></defs></svg>`,
+        negative: `<svg viewBox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="8" fill="#38bdf8"/><g stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow-neg)">${[...Array(8)].map((_, i) => `<line x2="50" y2="50" x1="${50 + 40 * Math.cos(i * Math.PI / 4)}" y1="${50 + 40 * Math.sin(i * Math.PI / 4)}"/>`).join('')}</g><defs><marker id="arrow-neg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8"/></marker></defs></svg>`,
+        plates: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect x="10" y="10" width="5" height="80" fill="#f59e0b"/><rect x="85" y="10" width="5" height="80" fill="#38bdf8"/><g stroke="#fff" stroke-width="1.5" marker-end="url(#arrow-plates)">${[...Array(5)].map((_, i) => `<line x1="15" y1="${20 + i * 15}" x2="85" y2="${20 + i * 15}"/>`).join('')}</g><defs><marker id="arrow-plates" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fff"/></marker></defs></svg>`
+    };
+    fieldButtons.forEach(btn => btn.addEventListener('click', () => {
+        fieldButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        fieldDiagram.innerHTML = fields[btn.dataset.field];
+    }));
+    fieldDiagram.innerHTML = fields.positive;
+
+    // I-V Graphs
+    const graphButtons = document.querySelectorAll('[data-graph]');
+    const ivGraph = document.getElementById('iv-graph');
+    const graphs = {
+        resistor: `<svg viewBox="-5 -5 110 110" class="w-full h-full"><g stroke="#4b5563"><path d="M0 100 L 0 0 L 100 0"/><path d="M50 0 v 100" stroke-dasharray="2 2"/><path d="M0 50 h 100" stroke-dasharray="2 2"/></g><path d="M0 100 L 100 0" stroke="#fbbf24" stroke-width="2.5"/><text x="102" y="5" fill="#d1d5db">I</text><text x="95" y="105" fill="#d1d5db">V</text></svg>`,
+        lamp: `<svg viewBox="-5 -5 110 110" class="w-full h-full"><g stroke="#4b5563"><path d="M0 100 L 0 0 L 100 0"/><path d="M50 0 v 100" stroke-dasharray="2 2"/><path d="M0 50 h 100" stroke-dasharray="2 2"/></g><path d="M50 50 C 60 50, 70 40, 100 0" stroke="#fbbf24" stroke-width="2.5" fill="none"/><path d="M50 50 C 40 50, 30 60, 0 100" stroke="#fbbf24" stroke-width="2.5" fill="none"/><text x="102" y="5" fill="#d1d5db">I</text><text x="95" y="105" fill="#d1d5db">V</text></svg>`,
+        diode: `<svg viewBox="-5 -5 110 110" class="w-full h-full"><g stroke="#4b5563"><path d="M0 100 L 0 0 L 100 0"/><path d="M50 0 v 100" stroke-dasharray="2 2"/><path d="M0 50 h 100" stroke-dasharray="2 2"/></g><path d="M0 50 L 50 50 L 60 50 C 70 50, 80 40, 100 0" stroke="#fbbf24" stroke-width="2.5" fill="none"/><text x="102" y="5" fill="#d1d5db">I</text><text x="95" y="105" fill="#d1d5db">V</text></svg>`
+    };
+    graphButtons.forEach(btn => btn.addEventListener('click', () => {
+        graphButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        ivGraph.innerHTML = graphs[btn.dataset.graph];
+    }));
+    ivGraph.innerHTML = graphs.resistor;
+
+    // Cost calculator
+    const powerInput = document.getElementById('power-kw');
+    const timeInput = document.getElementById('time-h');
+    const costInput = document.getElementById('cost-kwh');
+    function calculateCost() {
+        const p = parseFloat(powerInput.value) || 0;
+        const t = parseFloat(timeInput.value) || 0;
+        const c = parseFloat(costInput.value) || 0;
+        const total = p * t * c;
+        document.getElementById('total-cost').textContent = `${total.toFixed(1)} p`;
+    }
+    [powerInput, timeInput, costInput].forEach(el => el.addEventListener('input', calculateCost));
+    
+    // Quiz
+    const quizData = [
+        { q: "A plastic rod is rubbed with a cloth and becomes positively charged. Why?", a: "It lost electrons", o: ["It gained protons", "It lost protons", "It gained electrons"] },
+        { q: "How must an ammeter be connected in a circuit?", a: "In series", o: ["In parallel", "Across the component", "Across the power supply"] },
+        { q: "Which component has an I-V graph that is a straight line through the origin?", a: "An ohmic resistor", o: ["A filament lamp", "A diode", "A thermistor"] },
+        { q: "Which formula for power is correct?", a: "P = V x I", o: ["P = V / I", "P = I / R", "P = V x R"] },
+        { q: "A 3 kW heater is on for 5 hours. If 1 kWh costs 10p, what is the total cost?", a: "150 p", o: ["15 p", "30 p", "50 p"] }
+    ];
+    const quizContainer = document.getElementById('quiz-container');
+    let currentQuestionIndex = 0, score = 0;
+
+    function showQuestion() {
+        const question = quizData[currentQuestionIndex];
+        const options = [...question.o, question.a].sort(() => Math.random() - 0.5);
+        quizContainer.innerHTML = `<p class="mb-4">${currentQuestionIndex + 1}. ${question.q}</p><div class="space-y-3">${options.map(opt => `<button class="quiz-option text-left w-full p-3 border rounded-md">${opt}</button>`).join('')}</div>`;
+        quizContainer.querySelectorAll('.quiz-option').forEach(button => {
+            button.addEventListener('click', () => {
+                 const allOptions = quizContainer.querySelectorAll('.quiz-option');
+                allOptions.forEach(opt => { opt.disabled = true; });
+                const isCorrect = button.textContent === question.a;
+                if(isCorrect) {
+                    score++;
+                    button.style.borderColor = '#22c55e';
+                    button.style.backgroundColor = 'rgba(34,197,94,0.2)';
+                } else {
+                    button.style.borderColor = '#ef4444';
+                    button.style.backgroundColor = 'rgba(239,68,68,0.2)';
+                    allOptions.forEach(opt => {
+                        if(opt.textContent === question.a) {
+                           opt.style.borderColor = '#22c55e';
+                           opt.style.backgroundColor = 'rgba(34,197,94,0.2)';
+                        }
+                    });
+                }
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < quizData.length) showQuestion();
+                    else showFinalScore();
+                }, 2000);
+            });
+        });
+    }
+    
+    function showFinalScore() {
+        quizContainer.innerHTML = `<div class="text-center"><h3 class="text-xl">Quiz Complete!</h3><p class="mt-2">Your score: <span class="text-amber-400 font-bold text-2xl">${score}</span> / ${quizData.length}</p><button id="restart-quiz" class="mt-4 bg-sky-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-sky-700">Restart</button></div>`;
+        document.getElementById('restart-quiz').addEventListener('click', () => { currentQuestionIndex = 0; score = 0; showQuestion(); });
+    }
+    showQuestion();
+});
+</script>
+</body>
+</html>
+
