@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Sections</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f3f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .wrapper {
+            width: min(90vw, 640px);
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            margin-top: 0;
+            color: #0b3d91;
+            font-size: clamp(1.75rem, 3vw, 2.4rem);
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            color: #444;
+        }
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0 0;
+            display: grid;
+            gap: 1rem;
+        }
+        .link-list a {
+            display: block;
+            text-decoration: none;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #5fa1ff, #2870ff);
+            color: #fff;
+            font-weight: bold;
+            box-shadow: 0 8px 18px rgba(40, 112, 255, 0.25);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .link-list a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(40, 112, 255, 0.3);
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 2rem;
+            }
+        }
+        .return-top {
+            position: fixed;
+            bottom: clamp(16px, 4vw, 32px);
+            right: clamp(16px, 4vw, 32px);
+            padding: 0.75rem 1.1rem;
+            border-radius: 999px;
+            background: #0056b3;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.35);
+            opacity: 0.88;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            z-index: 1000;
+        }
+        .return-top:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <a id="top"></a>
+    <main class="wrapper">
+        <h1>HTML Sections</h1>
+        <p>Select a section to open the original HTML file.</p>
+        <ul class="link-list">
+            <li><a href="Magnets & Currents 1_with_images.html">IGCSE Physics - Chapter 9: Magnets & Currents (1-8)</a></li>
+            <li><a href="Magnets & Currents 2_with_images.html">IGCSE Physics - Chapter 9: Magnets & Currents (9-16)</a></li>
+            <li><a href="Magnets & Currents 3_with_images.html">IGCSE Physics - Chapter 9: Magnets & Currents (17-24)</a></li>
+            <li><a href="Magnets & Currents 4_with_images.html">IGCSE Physics - Chapter 9: Magnets & Currents (25-32)</a></li>
+            <li><a href="Magnets & Currents 5_with_images.html">IGCSE Physics - Chapter 9: Magnets & Currents (33-36)</a></li>
+        </ul>
+        <footer>Last updated: 2025-10-19</footer>
+    </main>
+    <a class="return-top" href="#top" aria-label="Back to top">Home</a>
+</body>
+</html>
