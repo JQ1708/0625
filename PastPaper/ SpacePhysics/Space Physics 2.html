@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGCSE Physics Past Paper - Space Physics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+        }
+        .question-block {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .question-header {
+            font-size: 0.9em;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-content p {
+            margin: 0 0 10px 0;
+        }
+        .answer {
+            background-color: #e9f5ff;
+            border: 1px solid #b3d7ff;
+            border-radius: 5px;
+            padding: 15px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .answer-content {
+            display: none;
+        }
+        .answer-content p, .answer-content ul {
+            margin: 0;
+        }
+        .keyword {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        i {
+            font-style: italic;
+        }
+            .home-button {
+            position: fixed;
+            bottom: clamp(16px, 4vw, 32px);
+            right: clamp(16px, 4vw, 32px);
+            padding: 0.75rem 1.1rem;
+            border-radius: 999px;
+            background: #0056b3;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.35);
+            opacity: 0.88;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            z-index: 1000;
+        }
+        .home-button:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <a class="home-button" href="index.html" aria-label="Back to index">Home</a>
+
+    <div class="container">
+        <h1>IGCSE Physics - Space Physics Questions</h1>
+
+        <!-- Question 9 -->
+        <div class="question-block">
+            <div class="question-header">Question 9 (0625/43_Winter_2023_Q10) - Space Physics</div>
+            <div class="question-content">
+                <p>(a) (i) 1. State what is represented in space physics by the symbol H₀. [1]</p>
+                <div class="answer" onclick="toggleAnswer(this)">
+                    <strong>Tap to reveal answer</strong>
+                    <div class="answer-content">
+                        <p>H₀ represents the <strong class="keyword">Hubble constant</strong>.</p>
+                    </div>
+                </div>
+                <p>2. Write down the equation that defines H₀ in terms of the speed that a far galaxy is moving away from the Earth and its distance from the Earth.</p>
+                <div class="answer" onclick="toggleAnswer(this)">
+                    <strong>Tap to reveal answer</strong>
+                    <div class="answer-content">
+                        <p><i>H₀ = <sup>v</sup>&frasl;<sub>d</sub></i></p>
+                    </div>
+                </div>
+                <p>(ii) The numerical value of H₀ is 2.2 x 10⁻¹⁸. State the unit of H₀. [1]</p>
+                <div class="answer" onclick="toggleAnswer(this)">
+                    <strong>Tap to reveal answer</strong>
+                    <div class="answer-content">
+                        <p>The unit is <strong class="keyword">per second</strong>, which can be written as s⁻¹ or 1/s.</p>
+                    </div>
+                </div>
+                <p>(iii) Use this value of H₀ to determine an estimate for the age of the Universe in seconds. [2]</p>
+                <div class="answer" onclick="toggleAnswer(this)">
+                    <strong>Tap to reveal answer</strong>
+                    <div class="answer-content">
+                        <p>1. The age of the Universe is estimated as the reciprocal of the Hubble constant: <i>Age ≈ <sup>1</sup>&frasl;<sub>H₀</sub></i></p>
+                        <p>2. Substitute the value: <br> <i>Age = <sup>1</sup>&frasl;<sub>(2.2 x 10⁻¹⁸ s⁻¹)</sub></i></p>
+                        <p>3. Calculate the age: <br> <i>Age = <strong class="keyword">4.5 x 10¹⁷ s</strong></i></p>
+                    </div>
+                </div>
+                <p>(b) State when cosmic microwave background radiation (CMBR) was formed and where we detect it coming from. [2]</p>
+                <div class="answer" onclick="toggleAnswer(this)">
+                    <strong>Tap to reveal answer</strong>
+                    <div class="answer-content">
+                        <p>CMBR was formed <strong class="keyword">shortly after the Big Bang</strong> and it is detected coming from <strong class="keyword">all points in space</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleAnswer(element) {
+            const content = element.querySelector('.answer-content');
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
